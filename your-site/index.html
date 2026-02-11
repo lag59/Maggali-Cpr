@@ -3,8 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Andrea Bilingual-CPR + Maggali Design & More</title>
-  <meta name="description" content="Bilingual CPR/First Aid/BLS training + custom web design and print services." />
+
+  <title>CPR, First Aid & BLS (Bilingual) | Andrea Bilingual-CPR + Maggali Design & More</title>
+  <meta name="description" content="Bilingual CPR, First Aid & BLS certification training (English/Spanish) for construction teams and healthcare facilities. Plus custom web design and print services by Maggali Design & More." />
+
+  <link rel="canonical" href="https://andreabilingualcpr.com/" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Andrea Bilingual-CPR + Maggali Design & More" />
+  <meta property="og:description" content="Bilingual CPR/First Aid/BLS training + custom web design and print services." />
+  <meta property="og:url" content="https://andreabilingualcpr.com/" />
+  <meta property="og:image" content="https://andreabilingualcpr.com/assets/hero-cpr-generated.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Andrea Bilingual-CPR + Maggali Design & More" />
+  <meta name="twitter:description" content="Bilingual CPR/First Aid/BLS training + custom web design and print services." />
+  <meta name="twitter:image" content="https://andreabilingualcpr.com/assets/hero-cpr-generated.png" />
 
   <style>
     :root{
@@ -481,7 +498,6 @@
         <article class="heroPanel heroPanel--design" data-mode="design">
           <div class="heroInner">
             <div class="heroLogoRow">
-              <!-- Recommended: rename Maggi Logo.png -> maggi-logo.png -->
               <img class="logo" src="assets/maggi-logo.png" alt="Maggali Design & More logo" />
               <div class="logoTitle">
                 <div class="logoName">Maggali Design & More</div>
@@ -505,11 +521,10 @@
             </div>
           </div>
 
-          <!-- Photo in box -->
-             <div class="heroPhoto" aria-hidden="true">
-              <img src="assets/hero-design.png" alt="Design and print services">
-             </div>
-             </article>
+          <div class="heroPhoto" aria-hidden="true">
+            <img src="assets/hero-design.png" alt="Design and print services">
+          </div>
+        </article>
 
       </div>
     </section>
@@ -611,7 +626,6 @@
 
         <div class="aboutGrid">
           <div class="aboutPhoto">
-            <!-- Recommended: rename "Maggali designer picture.png" -> "about-andrea.png" -->
             <img src="assets/Bilingual CPR and creative design logos.png" alt="Andrea Maggali">
           </div>
 
@@ -632,7 +646,13 @@
         <p class="sectionText">Pick which business this is for — the form will adjust automatically.</p>
         <p class="sectionText" style="margin-top:-6px;">Email: <a class="cardLink" href="mailto:andrea@andreabilingual-cpr.com">andrea@andreabilingual-cpr.com</a></p>
 
-        <form class="form" id="leadForm">
+        <!-- Netlify-ready form (captures submissions) -->
+        <form class="form" id="leadForm" name="leadForm" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="leadForm">
+          <p style="display:none;">
+            <label>Don’t fill this out: <input name="bot-field"></label>
+          </p>
+
           <div class="formGrid">
             <label>
               Full Name
@@ -696,7 +716,19 @@
       </div>
     </div>
   </footer>
-  </div>
+
+  <!-- Basic schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Andrea Bilingual-CPR + Maggali Design & More",
+    "url": "https://andreabilingualcpr.com/",
+    "email": "andrea@andreabilingual-cpr.com",
+    "telephone": "+19843029783",
+    "description": "Bilingual CPR/First Aid/BLS training and custom design & print services."
+  }
+  </script>
 
   <script>
     // Mobile menu toggle
@@ -730,6 +762,7 @@
       ],
       design: [
         { value: "quote-design", label: "Request a Quote" },
+        { value: "consult-design", label: "Book a Consult" },
         { value: "web-design", label: "Website Design" },
         { value: "dtf", label: "DTF Prints" },
         { value: "embroidery", label: "Embroidery" },
@@ -753,10 +786,8 @@
       }
     }
 
-    businessSelect?.addEventListener("change", (e) => {
-      const mode = e.target.value;
-      loadTopics(mode);
-      document.body.classList.toggle("modeDesign", mode === "design");
+    businessSelect?.addEventListener("change", () => {
+      loadTopics(businessSelect.value);
       document.body.classList.toggle("modeDesign", businessSelect.value === "design");
     });
 
@@ -790,16 +821,6 @@
 
     // Initialize
     loadTopics("cpr");
-
-    // Demo-only form submit (wire to Netlify Forms later)
-    document.getElementById("leadForm")?.addEventListener("submit", (e) => {
-      e.preventDefault();
-      formStatus.textContent =
-        "Saved! (Demo mode) — next step: connect this form to Netlify Forms or your email/CRM.";
-    });
   </script>
 </body>
-
 </html>
-
-}
