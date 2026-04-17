@@ -402,6 +402,144 @@
     .full{ grid-column: 1 / -1; }
     .tiny{ font-size: 12px; color: rgba(24,35,58,0.70); margin-top: 10px; }
 
+    /* Portfolio */
+    .portfolioSubhead{
+      margin: 0 0 14px;
+      font-size: 16px;
+      font-weight: 700;
+      color: rgba(24,35,58,0.80);
+      letter-spacing: 0.1px;
+    }
+
+    .portfolioGrid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .portfolioCard{
+      display: flex;
+      flex-direction: column;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(24,35,58,0.10);
+      box-shadow: var(--shadowSoft);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.18s, box-shadow 0.18s;
+      color: inherit;
+    }
+    .portfolioCard:hover{
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .portfolioThumb{
+      position: relative;
+      height: 160px;
+      overflow: hidden;
+      background: rgba(255,122,168,0.08);
+    }
+    .portfolioThumb img{
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s;
+    }
+    .portfolioCard:hover .portfolioThumb img{
+      transform: scale(1.04);
+    }
+
+    .portfolioVisitBadge{
+      position: absolute;
+      top: 10px; right: 10px;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(24,35,58,0.10);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(24,35,58,0.80);
+      pointer-events: none;
+    }
+
+    .portfolioInfo{
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 14px 16px 16px;
+    }
+    .portfolioName{
+      font-size: 15px;
+      color: rgba(24,35,58,0.94);
+    }
+    .portfolioDesc{
+      font-size: 13px;
+      color: rgba(24,35,58,0.65);
+      line-height: 1.45;
+    }
+
+    /* Work gallery */
+    .galleryGrid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .galleryItem{
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(24,35,58,0.10);
+      box-shadow: 0 6px 18px rgba(35,60,110,0.10);
+      background: rgba(255,255,255,0.55);
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .galleryItem:hover{
+      transform: scale(1.03);
+      box-shadow: var(--shadow);
+    }
+    .galleryImg{
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Lightbox */
+    .lightbox{
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(10,18,35,0.88);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open{ display: flex; }
+    .lightboxImg{
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 14px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.55);
+      object-fit: contain;
+    }
+    .lightboxClose{
+      position: absolute;
+      top: 18px; right: 22px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      border-radius: 50%;
+      width: 38px; height: 38px;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    @media (max-width: 920px){
+      .portfolioGrid{ grid-template-columns: 1fr; }
+      .galleryGrid{ grid-template-columns: repeat(2, 1fr); }
+    }
+
     /* Footer */
     .footer{
       border-top: 1px solid rgba(24,35,58,0.10);
@@ -438,6 +576,7 @@
         <a class="navLink" href="#home">Home</a>
         <a class="navLink" href="#cpr">CPR Training</a>
         <a class="navLink" href="#design">Design & More</a>
+        <a class="navLink" href="#portfolio">Portfolio</a>
         <a class="navLink" href="#about">About</a>
         <a class="navLink" href="#contact">Contact</a>
       </nav>
@@ -453,6 +592,7 @@
       <a class="mobileLink" href="#home">Home</a>
       <a class="mobileLink" href="#cpr">CPR Training</a>
       <a class="mobileLink" href="#design">Design & More</a>
+      <a class="mobileLink" href="#portfolio">Portfolio</a>
       <a class="mobileLink" href="#about">About</a>
       <a class="mobileLink" href="#contact">Contact</a>
       <a class="mobileLink" href="tel:19843029783">Call/Text: (984)302-9783</a>
@@ -636,6 +776,82 @@
       </div>
     </section>
 
+    <!-- =====================================================
+         PORTFOLIO SECTION
+         HOW TO ADD YOUR WORK:
+         1. Website links — fill in href, site name, and description below.
+            Duplicate a .portfolioCard block to add more sites.
+         2. Work photos — drop your images into lander/assets/ and
+            set the src of each .galleryImg <img> tag.
+            Duplicate a .galleryItem block to add more photos.
+    ===================================================== -->
+    <section class="section" id="portfolio">
+      <div class="container">
+        <h3 class="sectionTitle">Portfolio — Websites &amp; Work</h3>
+        <p class="sectionText">A sample of websites and design projects by Maggali Design &amp; More.</p>
+
+        <!-- ── Website links ── -->
+        <h4 class="portfolioSubhead">Websites Built</h4>
+        <div class="portfolioGrid">
+
+          <!-- SITE 1 — replace href, name, description, and preview image -->
+          <a class="portfolioCard" href="https://www.ecccivil.com/" target="_blank" rel="noopener">
+            <div class="portfolioThumb">
+              <img src="https://image.thum.io/get/width/600/crop/800/https://www.ecccivil.com/" alt="ECC Civil website preview" loading="lazy" />
+              <span class="portfolioVisitBadge">Visit Site ↗</span>
+            </div>
+            <div class="portfolioInfo">
+              <strong class="portfolioName"></strong>
+              <span class="portfolioDesc">Short description of the project — industry, features, etc.</span>
+            </div>
+          </a>
+
+          <!-- SITE 2 -->
+          <a class="portfolioCard" href="https://danielcrenovations.com/" target="_blank" rel="noopener">
+            <div class="portfolioThumb">
+              <img src="https://image.thum.io/get/width/600/crop/800/https://danielcrenovations.com/" alt="Daniel C Renovations website preview" loading="lazy" />
+              <span class="portfolioVisitBadge">Visit Site ↗</span>
+            </div>
+            <div class="portfolioInfo">
+              <strong class="portfolioName">Daniel C Renovation </strong>
+              <span class="portfolioDesc">Short description of the project.</span>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- ── Work photo gallery ── -->
+        <h4 class="portfolioSubhead" style="margin-top:32px;">Work Gallery</h4>
+        <div class="galleryGrid">
+
+          <!-- PHOTO 1 — replace src and alt -->
+          <div class="galleryItem">
+            <img class="galleryImg" src="assets/hero-design.png" alt="Work sample 1" />
+          </div>
+
+          <!-- PHOTO 2 -->
+          <div class="galleryItem">
+            <img class="galleryImg" src="assets/hero-design-generated.png" alt="Work sample 2" />
+          </div>
+
+          <!-- PHOTO 3 -->
+          <div class="galleryItem">
+            <img class="galleryImg" src="assets/maggi-logo.png" alt="Work sample 3" />
+          </div>
+
+          <!-- PHOTO 4 — duplicate this block to add more photos -->
+          <div class="galleryItem">
+            <img class="galleryImg" src="assets/Bilingual CPR and creative design logos.png" alt="Work sample 4" />
+          </div>
+
+        </div>
+
+        <div class="row" style="margin-top:22px;">
+          <a class="btn btnPrimary" href="#contact" data-action="quote-design">Request a Quote</a>
+        </div>
+      </div>
+    </section>
+
     <section class="section alt" id="about">
       <div class="container">
         <h3 class="sectionTitle">About</h3>
@@ -721,6 +937,12 @@
   </main>
 
   <footer class="footer">
+
+  <!-- Lightbox overlay for gallery -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightboxClose" id="lightboxClose" aria-label="Close image">&times;</button>
+    <img class="lightboxImg" id="lightboxImg" src="" alt="" />
+  </div>
     <div class="container footerRow">
       <div>
         <strong>Andrea Maggali</strong>
@@ -855,6 +1077,30 @@
 
     // Initialize
     loadTopics("cpr");
+
+    // Gallery lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxClose = document.getElementById("lightboxClose");
+
+    document.querySelectorAll(".galleryItem").forEach(item => {
+      item.addEventListener("click", () => {
+        const img = item.querySelector("img");
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add("open");
+        lightboxClose.focus();
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      lightboxImg.src = "";
+    }
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbox(); });
   </script>
 </body>
 </html>
